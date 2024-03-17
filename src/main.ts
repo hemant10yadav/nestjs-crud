@@ -47,8 +47,10 @@ async function bootstrap() {
       );
     });
   } else {
-    const port =
-      parseInt(process.env.PORT || '8080') + (cluster as any).worker.id;
+    let port = parseInt(process.env.PORT || '8080');
+    if ((cluster as any)?.worker?.id) {
+      port += (cluster as any).worker.id;
+    }
     await app.listen(port);
     console.log(`Worker ${process.pid} started on port ${port}`);
   }
