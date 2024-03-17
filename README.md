@@ -41,6 +41,9 @@ $ npm run start
 # watch mode
 $ npm run start:dev
 
+# cluster mode
+$ npm run start:multi
+
 # production mode
 $ npm run start:prod
 ```
