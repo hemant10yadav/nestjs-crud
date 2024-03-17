@@ -6,7 +6,20 @@ import { ConfigModule } from '@nestjs/config';
 import { LoggerModule } from 'nestjs-pino';
 
 @Module({
-  imports: [UsersModule, ConfigModule.forRoot(), LoggerModule.forRoot()],
+  imports: [
+    UsersModule,
+    ConfigModule.forRoot(),
+    LoggerModule.forRoot({
+      pinoHttp: {
+        transport: {
+          target: 'pino-pretty',
+          options: {
+            singleLine: true,
+          },
+        },
+      },
+    }),
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
