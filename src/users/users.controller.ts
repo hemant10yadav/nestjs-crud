@@ -29,7 +29,6 @@ export class UsersController {
   findOne(@Param('id') id: string): User {
     const user = this.usersService.findOne(id);
     if (!user) {
-      this.logger.error(`User with id ${id} not found`);
       throw new NotFoundException(`User with id ${id} not found`);
     }
     this.logger.log(`Retrieve user with id: ${id}`);
@@ -46,7 +45,6 @@ export class UsersController {
   update(@Param('id') id: string, @Body() restUser: RestUser): User {
     const updatedUser = this.usersService.update(id, restUser);
     if (!updatedUser) {
-      this.logger.error(`User with id ${id} not found`);
       throw new NotFoundException(`User with id ${id} not found`);
     }
     this.logger.log(`updated user with id: ${id}`);
@@ -57,7 +55,6 @@ export class UsersController {
   remove(@Param('id') id: string): User {
     const deletedUser = this.usersService.remove(id);
     if (!deletedUser) {
-      this.logger.error(`User with id ${id} not found`);
       throw new NotFoundException(`User with id ${id} not found`);
     }
     this.logger.log(`Deleted user with id: ${id}`);
